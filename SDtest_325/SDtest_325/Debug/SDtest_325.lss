@@ -1,0 +1,681 @@
+
+SDtest_325.elf:     file format elf32-avr
+
+Sections:
+Idx Name          Size      VMA       LMA       File off  Algn
+  0 .data         00000000  00800100  00800100  00000472  2**0
+                  CONTENTS, ALLOC, LOAD, DATA
+  1 .text         000003fe  00000000  00000000  00000074  2**1
+                  CONTENTS, ALLOC, LOAD, READONLY, CODE
+  2 .bss          00000074  00800100  00800100  00000472  2**0
+                  ALLOC
+  3 .comment      00000030  00000000  00000000  00000472  2**0
+                  CONTENTS, READONLY
+  4 .note.gnu.avr.deviceinfo 0000003c  00000000  00000000  000004a4  2**2
+                  CONTENTS, READONLY
+  5 .debug_aranges 00000080  00000000  00000000  000004e0  2**0
+                  CONTENTS, READONLY, DEBUGGING
+  6 .debug_info   00000e4f  00000000  00000000  00000560  2**0
+                  CONTENTS, READONLY, DEBUGGING
+  7 .debug_abbrev 0000083c  00000000  00000000  000013af  2**0
+                  CONTENTS, READONLY, DEBUGGING
+  8 .debug_line   000005d7  00000000  00000000  00001beb  2**0
+                  CONTENTS, READONLY, DEBUGGING
+  9 .debug_frame  00000158  00000000  00000000  000021c4  2**2
+                  CONTENTS, READONLY, DEBUGGING
+ 10 .debug_str    0000049e  00000000  00000000  0000231c  2**0
+                  CONTENTS, READONLY, DEBUGGING
+ 11 .debug_loc    000006d0  00000000  00000000  000027ba  2**0
+                  CONTENTS, READONLY, DEBUGGING
+ 12 .debug_ranges 00000088  00000000  00000000  00002e8a  2**0
+                  CONTENTS, READONLY, DEBUGGING
+
+Disassembly of section .text:
+
+00000000 <__vectors>:
+   0:	0c 94 2e 00 	jmp	0x5c	; 0x5c <__ctors_end>
+   4:	0c 94 40 00 	jmp	0x80	; 0x80 <__bad_interrupt>
+   8:	0c 94 40 00 	jmp	0x80	; 0x80 <__bad_interrupt>
+   c:	0c 94 40 00 	jmp	0x80	; 0x80 <__bad_interrupt>
+  10:	0c 94 40 00 	jmp	0x80	; 0x80 <__bad_interrupt>
+  14:	0c 94 40 00 	jmp	0x80	; 0x80 <__bad_interrupt>
+  18:	0c 94 40 00 	jmp	0x80	; 0x80 <__bad_interrupt>
+  1c:	0c 94 40 00 	jmp	0x80	; 0x80 <__bad_interrupt>
+  20:	0c 94 40 00 	jmp	0x80	; 0x80 <__bad_interrupt>
+  24:	0c 94 40 00 	jmp	0x80	; 0x80 <__bad_interrupt>
+  28:	0c 94 40 00 	jmp	0x80	; 0x80 <__bad_interrupt>
+  2c:	0c 94 40 00 	jmp	0x80	; 0x80 <__bad_interrupt>
+  30:	0c 94 40 00 	jmp	0x80	; 0x80 <__bad_interrupt>
+  34:	0c 94 40 00 	jmp	0x80	; 0x80 <__bad_interrupt>
+  38:	0c 94 40 00 	jmp	0x80	; 0x80 <__bad_interrupt>
+  3c:	0c 94 40 00 	jmp	0x80	; 0x80 <__bad_interrupt>
+  40:	0c 94 40 00 	jmp	0x80	; 0x80 <__bad_interrupt>
+  44:	0c 94 40 00 	jmp	0x80	; 0x80 <__bad_interrupt>
+  48:	0c 94 40 00 	jmp	0x80	; 0x80 <__bad_interrupt>
+  4c:	0c 94 40 00 	jmp	0x80	; 0x80 <__bad_interrupt>
+  50:	0c 94 40 00 	jmp	0x80	; 0x80 <__bad_interrupt>
+  54:	0c 94 40 00 	jmp	0x80	; 0x80 <__bad_interrupt>
+  58:	0c 94 40 00 	jmp	0x80	; 0x80 <__bad_interrupt>
+
+0000005c <__ctors_end>:
+  5c:	11 24       	eor	r1, r1
+  5e:	1f be       	out	0x3f, r1	; 63
+  60:	cf ef       	ldi	r28, 0xFF	; 255
+  62:	d8 e0       	ldi	r29, 0x08	; 8
+  64:	de bf       	out	0x3e, r29	; 62
+  66:	cd bf       	out	0x3d, r28	; 61
+
+00000068 <__do_clear_bss>:
+  68:	21 e0       	ldi	r18, 0x01	; 1
+  6a:	a0 e0       	ldi	r26, 0x00	; 0
+  6c:	b1 e0       	ldi	r27, 0x01	; 1
+  6e:	01 c0       	rjmp	.+2      	; 0x72 <.do_clear_bss_start>
+
+00000070 <.do_clear_bss_loop>:
+  70:	1d 92       	st	X+, r1
+
+00000072 <.do_clear_bss_start>:
+  72:	a4 37       	cpi	r26, 0x74	; 116
+  74:	b2 07       	cpc	r27, r18
+  76:	e1 f7       	brne	.-8      	; 0x70 <.do_clear_bss_loop>
+  78:	0e 94 e3 01 	call	0x3c6	; 0x3c6 <main>
+  7c:	0c 94 fd 01 	jmp	0x3fa	; 0x3fa <_exit>
+
+00000080 <__bad_interrupt>:
+  80:	0c 94 00 00 	jmp	0	; 0x0 <__vectors>
+
+00000084 <Clock_Prescale>:
+	int i;
+	unsigned char byte2 = (arg1>> (offset*8) ) & 0xFF;
+	sd_response[index] == byte2? (i = 0): (i = 1);
+	return i; 
+
+}
+  84:	e1 e6       	ldi	r30, 0x61	; 97
+  86:	f0 e0       	ldi	r31, 0x00	; 0
+  88:	80 e8       	ldi	r24, 0x80	; 128
+  8a:	80 83       	st	Z, r24
+  8c:	10 82       	st	Z, r1
+  8e:	08 95       	ret
+
+00000090 <SPI_Clock_Change>:
+  90:	2c b5       	in	r18, 0x2c	; 44
+  92:	2c 7f       	andi	r18, 0xFC	; 252
+  94:	2c bd       	out	0x2c, r18	; 44
+  96:	2d b5       	in	r18, 0x2d	; 45
+  98:	2e 7f       	andi	r18, 0xFE	; 254
+  9a:	2d bd       	out	0x2d, r18	; 45
+  9c:	80 31       	cpi	r24, 0x10	; 16
+  9e:	91 05       	cpc	r25, r1
+  a0:	d9 f0       	breq	.+54     	; 0xd8 <SPI_Clock_Change+0x48>
+  a2:	34 f4       	brge	.+12     	; 0xb0 <SPI_Clock_Change+0x20>
+  a4:	82 30       	cpi	r24, 0x02	; 2
+  a6:	91 05       	cpc	r25, r1
+  a8:	61 f0       	breq	.+24     	; 0xc2 <SPI_Clock_Change+0x32>
+  aa:	08 97       	sbiw	r24, 0x08	; 8
+  ac:	71 f0       	breq	.+28     	; 0xca <SPI_Clock_Change+0x3a>
+  ae:	08 95       	ret
+  b0:	80 34       	cpi	r24, 0x40	; 64
+  b2:	91 05       	cpc	r25, r1
+  b4:	e1 f0       	breq	.+56     	; 0xee <SPI_Clock_Change+0x5e>
+  b6:	80 38       	cpi	r24, 0x80	; 128
+  b8:	91 05       	cpc	r25, r1
+  ba:	19 f1       	breq	.+70     	; 0x102 <SPI_Clock_Change+0x72>
+  bc:	80 97       	sbiw	r24, 0x20	; 32
+  be:	39 f5       	brne	.+78     	; 0x10e <SPI_Clock_Change+0x7e>
+  c0:	0f c0       	rjmp	.+30     	; 0xe0 <SPI_Clock_Change+0x50>
+  c2:	8d b5       	in	r24, 0x2d	; 45
+  c4:	81 60       	ori	r24, 0x01	; 1
+  c6:	8d bd       	out	0x2d, r24	; 45
+  c8:	08 95       	ret
+  ca:	8d b5       	in	r24, 0x2d	; 45
+  cc:	81 60       	ori	r24, 0x01	; 1
+  ce:	8d bd       	out	0x2d, r24	; 45
+  d0:	8c b5       	in	r24, 0x2c	; 44
+  d2:	81 60       	ori	r24, 0x01	; 1
+  d4:	8c bd       	out	0x2c, r24	; 44
+  d6:	08 95       	ret
+  d8:	8c b5       	in	r24, 0x2c	; 44
+  da:	81 60       	ori	r24, 0x01	; 1
+  dc:	8c bd       	out	0x2c, r24	; 44
+  de:	08 95       	ret
+  e0:	8d b5       	in	r24, 0x2d	; 45
+  e2:	81 60       	ori	r24, 0x01	; 1
+  e4:	8d bd       	out	0x2d, r24	; 45
+  e6:	8c b5       	in	r24, 0x2c	; 44
+  e8:	82 60       	ori	r24, 0x02	; 2
+  ea:	8c bd       	out	0x2c, r24	; 44
+  ec:	08 95       	ret
+  ee:	8d b5       	in	r24, 0x2d	; 45
+  f0:	81 60       	ori	r24, 0x01	; 1
+  f2:	8d bd       	out	0x2d, r24	; 45
+  f4:	8c b5       	in	r24, 0x2c	; 44
+  f6:	81 60       	ori	r24, 0x01	; 1
+  f8:	8c bd       	out	0x2c, r24	; 44
+  fa:	8c b5       	in	r24, 0x2c	; 44
+  fc:	82 60       	ori	r24, 0x02	; 2
+  fe:	8c bd       	out	0x2c, r24	; 44
+ 100:	08 95       	ret
+ 102:	8c b5       	in	r24, 0x2c	; 44
+ 104:	81 60       	ori	r24, 0x01	; 1
+ 106:	8c bd       	out	0x2c, r24	; 44
+ 108:	8c b5       	in	r24, 0x2c	; 44
+ 10a:	82 60       	ori	r24, 0x02	; 2
+ 10c:	8c bd       	out	0x2c, r24	; 44
+ 10e:	08 95       	ret
+
+00000110 <Address_Byte>:
+ 110:	ea e6       	ldi	r30, 0x6A	; 106
+ 112:	f1 e0       	ldi	r31, 0x01	; 1
+ 114:	90 83       	st	Z, r25
+ 116:	81 83       	std	Z+1, r24	; 0x01
+ 118:	72 83       	std	Z+2, r23	; 0x02
+ 11a:	63 83       	std	Z+3, r22	; 0x03
+ 11c:	cf 01       	movw	r24, r30
+ 11e:	08 95       	ret
+
+00000120 <SPI_Master_init>:
+ 120:	84 b1       	in	r24, 0x04	; 4
+ 122:	87 60       	ori	r24, 0x07	; 7
+ 124:	84 b9       	out	0x04, r24	; 4
+ 126:	8c b5       	in	r24, 0x2c	; 44
+ 128:	80 65       	ori	r24, 0x50	; 80
+ 12a:	8c bd       	out	0x2c, r24	; 44
+ 12c:	08 95       	ret
+
+0000012e <SPI_Master_Write>:
+ 12e:	8e bd       	out	0x2e, r24	; 46
+ 130:	0d b4       	in	r0, 0x2d	; 45
+ 132:	07 fe       	sbrs	r0, 7
+ 134:	fd cf       	rjmp	.-6      	; 0x130 <SPI_Master_Write+0x2>
+ 136:	8e b5       	in	r24, 0x2e	; 46
+ 138:	08 95       	ret
+
+0000013a <Clock_Pulse>:
+ 13a:	cf 93       	push	r28
+ 13c:	df 93       	push	r29
+ 13e:	28 9a       	sbi	0x05, 0	; 5
+ 140:	cb e0       	ldi	r28, 0x0B	; 11
+ 142:	d0 e0       	ldi	r29, 0x00	; 0
+ 144:	8f ef       	ldi	r24, 0xFF	; 255
+ 146:	0e 94 97 00 	call	0x12e	; 0x12e <SPI_Master_Write>
+ 14a:	21 97       	sbiw	r28, 0x01	; 1
+ 14c:	d9 f7       	brne	.-10     	; 0x144 <Clock_Pulse+0xa>
+ 14e:	df 91       	pop	r29
+ 150:	cf 91       	pop	r28
+ 152:	08 95       	ret
+
+00000154 <SD_command>:
+ 154:	df 92       	push	r13
+ 156:	ef 92       	push	r14
+ 158:	ff 92       	push	r15
+ 15a:	0f 93       	push	r16
+ 15c:	1f 93       	push	r17
+ 15e:	cf 93       	push	r28
+ 160:	df 93       	push	r29
+ 162:	f8 2e       	mov	r15, r24
+ 164:	c4 2f       	mov	r28, r20
+ 166:	15 2f       	mov	r17, r21
+ 168:	e6 2e       	mov	r14, r22
+ 16a:	d7 2e       	mov	r13, r23
+ 16c:	d2 2f       	mov	r29, r18
+ 16e:	28 98       	cbi	0x05, 0	; 5
+ 170:	80 64       	ori	r24, 0x40	; 64
+ 172:	0e 94 97 00 	call	0x12e	; 0x12e <SPI_Master_Write>
+ 176:	8d 2d       	mov	r24, r13
+ 178:	0e 94 97 00 	call	0x12e	; 0x12e <SPI_Master_Write>
+ 17c:	8e 2d       	mov	r24, r14
+ 17e:	0e 94 97 00 	call	0x12e	; 0x12e <SPI_Master_Write>
+ 182:	81 2f       	mov	r24, r17
+ 184:	0e 94 97 00 	call	0x12e	; 0x12e <SPI_Master_Write>
+ 188:	ec 2e       	mov	r14, r28
+ 18a:	8c 2f       	mov	r24, r28
+ 18c:	0e 94 97 00 	call	0x12e	; 0x12e <SPI_Master_Write>
+ 190:	8d 2f       	mov	r24, r29
+ 192:	0e 94 97 00 	call	0x12e	; 0x12e <SPI_Master_Write>
+ 196:	8f ef       	ldi	r24, 0xFF	; 255
+ 198:	0e 94 97 00 	call	0x12e	; 0x12e <SPI_Master_Write>
+ 19c:	00 23       	and	r16, r16
+ 19e:	61 f0       	breq	.+24     	; 0x1b8 <SD_command+0x64>
+ 1a0:	ce e6       	ldi	r28, 0x6E	; 110
+ 1a2:	d1 e0       	ldi	r29, 0x01	; 1
+ 1a4:	10 e0       	ldi	r17, 0x00	; 0
+ 1a6:	02 59       	subi	r16, 0x92	; 146
+ 1a8:	1e 4f       	sbci	r17, 0xFE	; 254
+ 1aa:	8f ef       	ldi	r24, 0xFF	; 255
+ 1ac:	0e 94 97 00 	call	0x12e	; 0x12e <SPI_Master_Write>
+ 1b0:	89 93       	st	Y+, r24
+ 1b2:	c0 17       	cp	r28, r16
+ 1b4:	d1 07       	cpc	r29, r17
+ 1b6:	c9 f7       	brne	.-14     	; 0x1aa <SD_command+0x56>
+ 1b8:	28 9a       	sbi	0x05, 0	; 5
+ 1ba:	88 e0       	ldi	r24, 0x08	; 8
+ 1bc:	f8 12       	cpse	r15, r24
+ 1be:	08 c0       	rjmp	.+16     	; 0x1d0 <SD_command+0x7c>
+ 1c0:	81 e0       	ldi	r24, 0x01	; 1
+ 1c2:	90 e0       	ldi	r25, 0x00	; 0
+ 1c4:	20 91 72 01 	lds	r18, 0x0172	; 0x800172 <sd_response+0x4>
+ 1c8:	e2 12       	cpse	r14, r18
+ 1ca:	04 c0       	rjmp	.+8      	; 0x1d4 <SD_command+0x80>
+ 1cc:	80 e0       	ldi	r24, 0x00	; 0
+ 1ce:	02 c0       	rjmp	.+4      	; 0x1d4 <SD_command+0x80>
+ 1d0:	80 e0       	ldi	r24, 0x00	; 0
+ 1d2:	90 e0       	ldi	r25, 0x00	; 0
+ 1d4:	df 91       	pop	r29
+ 1d6:	cf 91       	pop	r28
+ 1d8:	1f 91       	pop	r17
+ 1da:	0f 91       	pop	r16
+ 1dc:	ff 90       	pop	r15
+ 1de:	ef 90       	pop	r14
+ 1e0:	df 90       	pop	r13
+ 1e2:	08 95       	ret
+
+000001e4 <SD_init>:
+Initialize card: [0x41 0x00 0x00 0x00 0x00 0xFF]
+Set transfer size: [0x50 0x00 0x00 0x02 0x00 0xFF]
+Read sector: [0x51 0x00 0x00 0x00 0x00 0xFF]
+*/
+
+void SD_init(){
+ 1e4:	0f 93       	push	r16
+ 1e6:	cf 93       	push	r28
+ 1e8:	df 93       	push	r29
+	SPI_Master_init();
+ 1ea:	0e 94 90 00 	call	0x120	; 0x120 <SPI_Master_init>
+	Clock_Pulse();
+ 1ee:	0e 94 9d 00 	call	0x13a	; 0x13a <Clock_Pulse>
+	do{
+		SD_command(CMD0,0x00000000,0x95,6);
+		//LCD message here
+	}while(sd_response[0] != 0x01);
+ 1f2:	ce e6       	ldi	r28, 0x6E	; 110
+ 1f4:	d1 e0       	ldi	r29, 0x01	; 1
+
+void SD_init(){
+	SPI_Master_init();
+	Clock_Pulse();
+	do{
+		SD_command(CMD0,0x00000000,0x95,6);
+ 1f6:	06 e0       	ldi	r16, 0x06	; 6
+ 1f8:	25 e9       	ldi	r18, 0x95	; 149
+ 1fa:	40 e0       	ldi	r20, 0x00	; 0
+ 1fc:	50 e0       	ldi	r21, 0x00	; 0
+ 1fe:	ba 01       	movw	r22, r20
+ 200:	80 e0       	ldi	r24, 0x00	; 0
+ 202:	0e 94 aa 00 	call	0x154	; 0x154 <SD_command>
+		//LCD message here
+	}while(sd_response[0] != 0x01);
+ 206:	88 81       	ld	r24, Y
+ 208:	81 30       	cpi	r24, 0x01	; 1
+ 20a:	a9 f7       	brne	.-22     	; 0x1f6 <SD_init+0x12>
+	
+	while(SD_command(CMD8,0x000001AA,0x87,6)){
+ 20c:	06 e0       	ldi	r16, 0x06	; 6
+ 20e:	27 e8       	ldi	r18, 0x87	; 135
+ 210:	4a ea       	ldi	r20, 0xAA	; 170
+ 212:	51 e0       	ldi	r21, 0x01	; 1
+ 214:	60 e0       	ldi	r22, 0x00	; 0
+ 216:	70 e0       	ldi	r23, 0x00	; 0
+ 218:	88 e0       	ldi	r24, 0x08	; 8
+ 21a:	0e 94 aa 00 	call	0x154	; 0x154 <SD_command>
+ 21e:	89 2b       	or	r24, r25
+ 220:	a9 f7       	brne	.-22     	; 0x20c <SD_init+0x28>
+	
+	do{
+		SD_command(CMD55,0x00000000,0xFF,6);
+		SD_command(ACMD41,0x00000000,0xFF,6);
+		//LCD message here
+	}while(sd_response[0] != 0x00);
+ 222:	ce e6       	ldi	r28, 0x6E	; 110
+ 224:	d1 e0       	ldi	r29, 0x01	; 1
+	while(SD_command(CMD8,0x000001AA,0x87,6)){
+		//LCD message here
+	}
+	
+	do{
+		SD_command(CMD55,0x00000000,0xFF,6);
+ 226:	06 e0       	ldi	r16, 0x06	; 6
+ 228:	2f ef       	ldi	r18, 0xFF	; 255
+ 22a:	40 e0       	ldi	r20, 0x00	; 0
+ 22c:	50 e0       	ldi	r21, 0x00	; 0
+ 22e:	ba 01       	movw	r22, r20
+ 230:	87 e3       	ldi	r24, 0x37	; 55
+ 232:	0e 94 aa 00 	call	0x154	; 0x154 <SD_command>
+		SD_command(ACMD41,0x00000000,0xFF,6);
+ 236:	2f ef       	ldi	r18, 0xFF	; 255
+ 238:	40 e0       	ldi	r20, 0x00	; 0
+ 23a:	50 e0       	ldi	r21, 0x00	; 0
+ 23c:	ba 01       	movw	r22, r20
+ 23e:	89 e2       	ldi	r24, 0x29	; 41
+ 240:	0e 94 aa 00 	call	0x154	; 0x154 <SD_command>
+		//LCD message here
+	}while(sd_response[0] != 0x00);
+ 244:	88 81       	ld	r24, Y
+ 246:	81 11       	cpse	r24, r1
+ 248:	ee cf       	rjmp	.-36     	; 0x226 <SD_init+0x42>
+	PORTC = 0x01;
+ 24a:	81 e0       	ldi	r24, 0x01	; 1
+ 24c:	88 b9       	out	0x08, r24	; 8
+}
+ 24e:	df 91       	pop	r29
+ 250:	cf 91       	pop	r28
+ 252:	0f 91       	pop	r16
+ 254:	08 95       	ret
+
+00000256 <SD_Read_Single>:
+
+void SD_Read_Single(unsigned long address, unsigned short offset, unsigned short length, unsigned char* buffer){
+ 256:	af 92       	push	r10
+ 258:	bf 92       	push	r11
+ 25a:	cf 92       	push	r12
+ 25c:	df 92       	push	r13
+ 25e:	ef 92       	push	r14
+ 260:	ff 92       	push	r15
+ 262:	0f 93       	push	r16
+ 264:	1f 93       	push	r17
+ 266:	cf 93       	push	r28
+ 268:	df 93       	push	r29
+ 26a:	6a 01       	movw	r12, r20
+ 26c:	79 01       	movw	r14, r18
+	unsigned short k = offset+length;
+ 26e:	ea 01       	movw	r28, r20
+ 270:	c2 0f       	add	r28, r18
+ 272:	d3 1f       	adc	r29, r19
+	SS_ENABLE();
+ 274:	28 98       	cbi	0x05, 0	; 5
+	unsigned char* addr = Address_Byte(address);
+ 276:	0e 94 88 00 	call	0x110	; 0x110 <Address_Byte>
+ 27a:	5c 01       	movw	r10, r24
+	/************CMD17****************/
+	SPI_Master_Write(0x51);//CMD17??? Is 0x57 ok?
+ 27c:	81 e5       	ldi	r24, 0x51	; 81
+ 27e:	0e 94 97 00 	call	0x12e	; 0x12e <SPI_Master_Write>
+	SPI_Master_Write(addr[0]);
+ 282:	f5 01       	movw	r30, r10
+ 284:	80 81       	ld	r24, Z
+ 286:	0e 94 97 00 	call	0x12e	; 0x12e <SPI_Master_Write>
+	SPI_Master_Write(addr[1]);
+ 28a:	f5 01       	movw	r30, r10
+ 28c:	81 81       	ldd	r24, Z+1	; 0x01
+ 28e:	0e 94 97 00 	call	0x12e	; 0x12e <SPI_Master_Write>
+	SPI_Master_Write(addr[2]);
+ 292:	f5 01       	movw	r30, r10
+ 294:	82 81       	ldd	r24, Z+2	; 0x02
+ 296:	0e 94 97 00 	call	0x12e	; 0x12e <SPI_Master_Write>
+	SPI_Master_Write(addr[3]);
+ 29a:	f5 01       	movw	r30, r10
+ 29c:	83 81       	ldd	r24, Z+3	; 0x03
+ 29e:	0e 94 97 00 	call	0x12e	; 0x12e <SPI_Master_Write>
+	SPI_Master_Write(0xFF);
+ 2a2:	8f ef       	ldi	r24, 0xFF	; 255
+ 2a4:	0e 94 97 00 	call	0x12e	; 0x12e <SPI_Master_Write>
+	
+	do{
+		timeout[0]++;
+ 2a8:	0f 2e       	mov	r0, r31
+ 2aa:	f0 e0       	ldi	r31, 0x00	; 0
+ 2ac:	af 2e       	mov	r10, r31
+ 2ae:	f1 e0       	ldi	r31, 0x01	; 1
+ 2b0:	bf 2e       	mov	r11, r31
+ 2b2:	f0 2d       	mov	r31, r0
+ 2b4:	f5 01       	movw	r30, r10
+ 2b6:	80 81       	ld	r24, Z
+ 2b8:	91 81       	ldd	r25, Z+1	; 0x01
+ 2ba:	01 96       	adiw	r24, 0x01	; 1
+ 2bc:	91 83       	std	Z+1, r25	; 0x01
+ 2be:	80 83       	st	Z, r24
+		SPI_Master_Write(0xFF);
+ 2c0:	8f ef       	ldi	r24, 0xFF	; 255
+ 2c2:	0e 94 97 00 	call	0x12e	; 0x12e <SPI_Master_Write>
+		//lcd message here
+	}while(timeout[0] < 30 && SPDR != 0x00);
+ 2c6:	f5 01       	movw	r30, r10
+ 2c8:	80 81       	ld	r24, Z
+ 2ca:	91 81       	ldd	r25, Z+1	; 0x01
+ 2cc:	4e 97       	sbiw	r24, 0x1e	; 30
+ 2ce:	1c f4       	brge	.+6      	; 0x2d6 <SD_Read_Single+0x80>
+ 2d0:	8e b5       	in	r24, 0x2e	; 46
+ 2d2:	81 11       	cpse	r24, r1
+ 2d4:	ef cf       	rjmp	.-34     	; 0x2b4 <SD_Read_Single+0x5e>
+	if(timeout[0] == 30){
+		;//lcd message
+	}
+		
+	do{
+		timeout[1]++;
+ 2d6:	0f 2e       	mov	r0, r31
+ 2d8:	f0 e0       	ldi	r31, 0x00	; 0
+ 2da:	af 2e       	mov	r10, r31
+ 2dc:	f1 e0       	ldi	r31, 0x01	; 1
+ 2de:	bf 2e       	mov	r11, r31
+ 2e0:	f0 2d       	mov	r31, r0
+ 2e2:	f5 01       	movw	r30, r10
+ 2e4:	82 81       	ldd	r24, Z+2	; 0x02
+ 2e6:	93 81       	ldd	r25, Z+3	; 0x03
+ 2e8:	01 96       	adiw	r24, 0x01	; 1
+ 2ea:	93 83       	std	Z+3, r25	; 0x03
+ 2ec:	82 83       	std	Z+2, r24	; 0x02
+		SPI_Master_Write(0xFF);
+ 2ee:	8f ef       	ldi	r24, 0xFF	; 255
+ 2f0:	0e 94 97 00 	call	0x12e	; 0x12e <SPI_Master_Write>
+	}while(timeout[1] < 30 && SPDR != 0xFE);
+ 2f4:	f5 01       	movw	r30, r10
+ 2f6:	82 81       	ldd	r24, Z+2	; 0x02
+ 2f8:	93 81       	ldd	r25, Z+3	; 0x03
+ 2fa:	4e 97       	sbiw	r24, 0x1e	; 30
+ 2fc:	24 f0       	brlt	.+8      	; 0x306 <SD_Read_Single+0xb0>
+	
+	if(timeout[1] == 30){
+		;//lcd message
+	}
+	
+	 for(int i=0; i<offset; i++){
+ 2fe:	c1 14       	cp	r12, r1
+ 300:	d1 04       	cpc	r13, r1
+ 302:	29 f4       	brne	.+10     	; 0x30e <SD_Read_Single+0xb8>
+ 304:	0f c0       	rjmp	.+30     	; 0x324 <SD_Read_Single+0xce>
+	}
+		
+	do{
+		timeout[1]++;
+		SPI_Master_Write(0xFF);
+	}while(timeout[1] < 30 && SPDR != 0xFE);
+ 306:	8e b5       	in	r24, 0x2e	; 46
+ 308:	8e 3f       	cpi	r24, 0xFE	; 254
+ 30a:	59 f7       	brne	.-42     	; 0x2e2 <SD_Read_Single+0x8c>
+ 30c:	f8 cf       	rjmp	.-16     	; 0x2fe <SD_Read_Single+0xa8>
+	
+	if(timeout[1] == 30){
+		;//lcd message
+	}
+	
+	 for(int i=0; i<offset; i++){
+ 30e:	a1 2c       	mov	r10, r1
+ 310:	b1 2c       	mov	r11, r1
+		 SPI_Master_Write(0xFF);
+ 312:	8f ef       	ldi	r24, 0xFF	; 255
+ 314:	0e 94 97 00 	call	0x12e	; 0x12e <SPI_Master_Write>
+	
+	if(timeout[1] == 30){
+		;//lcd message
+	}
+	
+	 for(int i=0; i<offset; i++){
+ 318:	ff ef       	ldi	r31, 0xFF	; 255
+ 31a:	af 1a       	sub	r10, r31
+ 31c:	bf 0a       	sbc	r11, r31
+ 31e:	ac 14       	cp	r10, r12
+ 320:	bd 04       	cpc	r11, r13
+ 322:	b9 f7       	brne	.-18     	; 0x312 <SD_Read_Single+0xbc>
+		 SPI_Master_Write(0xFF);
+	 }//skip bytes
+	 
+	 for(int j=0; j<length; j++){
+ 324:	e1 14       	cp	r14, r1
+ 326:	f1 04       	cpc	r15, r1
+ 328:	61 f0       	breq	.+24     	; 0x342 <SD_Read_Single+0xec>
+ 32a:	68 01       	movw	r12, r16
+ 32c:	e0 0e       	add	r14, r16
+ 32e:	f1 1e       	adc	r15, r17
+		 buffer[j] = SPI_Master_Write(0xFF);
+ 330:	8f ef       	ldi	r24, 0xFF	; 255
+ 332:	0e 94 97 00 	call	0x12e	; 0x12e <SPI_Master_Write>
+ 336:	f6 01       	movw	r30, r12
+ 338:	81 93       	st	Z+, r24
+ 33a:	6f 01       	movw	r12, r30
+	
+	 for(int i=0; i<offset; i++){
+		 SPI_Master_Write(0xFF);
+	 }//skip bytes
+	 
+	 for(int j=0; j<length; j++){
+ 33c:	ee 15       	cp	r30, r14
+ 33e:	ff 05       	cpc	r31, r15
+ 340:	b9 f7       	brne	.-18     	; 0x330 <SD_Read_Single+0xda>
+		 buffer[j] = SPI_Master_Write(0xFF);
+	 }//read part within length only
+	 
+	 for(k; k<512; k++){
+ 342:	c1 15       	cp	r28, r1
+ 344:	f2 e0       	ldi	r31, 0x02	; 2
+ 346:	df 07       	cpc	r29, r31
+ 348:	40 f4       	brcc	.+16     	; 0x35a <SD_Read_Single+0x104>
+		 SPI_Master_Write(0xFF);
+ 34a:	8f ef       	ldi	r24, 0xFF	; 255
+ 34c:	0e 94 97 00 	call	0x12e	; 0x12e <SPI_Master_Write>
+	 
+	 for(int j=0; j<length; j++){
+		 buffer[j] = SPI_Master_Write(0xFF);
+	 }//read part within length only
+	 
+	 for(k; k<512; k++){
+ 350:	21 96       	adiw	r28, 0x01	; 1
+ 352:	c1 15       	cp	r28, r1
+ 354:	82 e0       	ldi	r24, 0x02	; 2
+ 356:	d8 07       	cpc	r29, r24
+ 358:	c1 f7       	brne	.-16     	; 0x34a <SD_Read_Single+0xf4>
+		 SPI_Master_Write(0xFF);
+	 }
+	 //skip checksum
+	 SPI_Master_Write(0xFF);
+ 35a:	8f ef       	ldi	r24, 0xFF	; 255
+ 35c:	0e 94 97 00 	call	0x12e	; 0x12e <SPI_Master_Write>
+	 SPI_Master_Write(0xFF);
+ 360:	8f ef       	ldi	r24, 0xFF	; 255
+ 362:	0e 94 97 00 	call	0x12e	; 0x12e <SPI_Master_Write>
+	 
+	 SS_DISABLE();
+ 366:	28 9a       	sbi	0x05, 0	; 5
+	 
+	 do{
+		 timeout[2]++;
+ 368:	c0 e0       	ldi	r28, 0x00	; 0
+ 36a:	d1 e0       	ldi	r29, 0x01	; 1
+		 SD_command(CMD12,0x00000000,0xFF,6);
+	 } while (timeout[2] < 30 && sd_response[0] != 0x00);
+ 36c:	0f 2e       	mov	r0, r31
+ 36e:	fe e6       	ldi	r31, 0x6E	; 110
+ 370:	ef 2e       	mov	r14, r31
+ 372:	f1 e0       	ldi	r31, 0x01	; 1
+ 374:	ff 2e       	mov	r15, r31
+ 376:	f0 2d       	mov	r31, r0
+	 SPI_Master_Write(0xFF);
+	 
+	 SS_DISABLE();
+	 
+	 do{
+		 timeout[2]++;
+ 378:	8c 81       	ldd	r24, Y+4	; 0x04
+ 37a:	9d 81       	ldd	r25, Y+5	; 0x05
+ 37c:	01 96       	adiw	r24, 0x01	; 1
+ 37e:	9d 83       	std	Y+5, r25	; 0x05
+ 380:	8c 83       	std	Y+4, r24	; 0x04
+		 SD_command(CMD12,0x00000000,0xFF,6);
+ 382:	06 e0       	ldi	r16, 0x06	; 6
+ 384:	2f ef       	ldi	r18, 0xFF	; 255
+ 386:	40 e0       	ldi	r20, 0x00	; 0
+ 388:	50 e0       	ldi	r21, 0x00	; 0
+ 38a:	ba 01       	movw	r22, r20
+ 38c:	8c e0       	ldi	r24, 0x0C	; 12
+ 38e:	0e 94 aa 00 	call	0x154	; 0x154 <SD_command>
+	 } while (timeout[2] < 30 && sd_response[0] != 0x00);
+ 392:	8c 81       	ldd	r24, Y+4	; 0x04
+ 394:	9d 81       	ldd	r25, Y+5	; 0x05
+ 396:	4e 97       	sbiw	r24, 0x1e	; 30
+ 398:	24 f4       	brge	.+8      	; 0x3a2 <SD_Read_Single+0x14c>
+ 39a:	f7 01       	movw	r30, r14
+ 39c:	80 81       	ld	r24, Z
+ 39e:	81 11       	cpse	r24, r1
+ 3a0:	eb cf       	rjmp	.-42     	; 0x378 <SD_Read_Single+0x122>
+	 
+	 if(timeout[2] == 30){
+		 ;//lcd message
+	 }
+}
+ 3a2:	df 91       	pop	r29
+ 3a4:	cf 91       	pop	r28
+ 3a6:	1f 91       	pop	r17
+ 3a8:	0f 91       	pop	r16
+ 3aa:	ff 90       	pop	r15
+ 3ac:	ef 90       	pop	r14
+ 3ae:	df 90       	pop	r13
+ 3b0:	cf 90       	pop	r12
+ 3b2:	bf 90       	pop	r11
+ 3b4:	af 90       	pop	r10
+ 3b6:	08 95       	ret
+
+000003b8 <Check_SPI_Ouput>:
+
+
+void Check_SPI_Ouput()
+{
+	SPI_Master_Write(0x55);
+ 3b8:	85 e5       	ldi	r24, 0x55	; 85
+ 3ba:	0e 94 97 00 	call	0x12e	; 0x12e <SPI_Master_Write>
+	SPI_Master_Write(0xCA);
+ 3be:	8a ec       	ldi	r24, 0xCA	; 202
+ 3c0:	0e 94 97 00 	call	0x12e	; 0x12e <SPI_Master_Write>
+ 3c4:	08 95       	ret
+
+000003c6 <main>:
+}
+
+int main(void)
+{
+	DDRC = 0x01;
+ 3c6:	c1 e0       	ldi	r28, 0x01	; 1
+ 3c8:	c7 b9       	out	0x07, r28	; 7
+	Clock_Prescale();
+ 3ca:	0e 94 42 00 	call	0x84	; 0x84 <Clock_Prescale>
+	SPI_Clock_Change(32);//Fcpu/32
+ 3ce:	80 e2       	ldi	r24, 0x20	; 32
+ 3d0:	90 e0       	ldi	r25, 0x00	; 0
+ 3d2:	0e 94 48 00 	call	0x90	; 0x90 <SPI_Clock_Change>
+	SD_init();
+ 3d6:	0e 94 f2 00 	call	0x1e4	; 0x1e4 <SD_init>
+	SD_Read_Single(FAT32_Addr(144,16385),0x0000,0x0064,sd_data);//0x64 = 100
+ 3da:	06 e0       	ldi	r16, 0x06	; 6
+ 3dc:	11 e0       	ldi	r17, 0x01	; 1
+ 3de:	24 e6       	ldi	r18, 0x64	; 100
+ 3e0:	30 e0       	ldi	r19, 0x00	; 0
+ 3e2:	40 e0       	ldi	r20, 0x00	; 0
+ 3e4:	50 e0       	ldi	r21, 0x00	; 0
+ 3e6:	60 e0       	ldi	r22, 0x00	; 0
+ 3e8:	72 e2       	ldi	r23, 0x22	; 34
+ 3ea:	81 e8       	ldi	r24, 0x81	; 129
+ 3ec:	90 e0       	ldi	r25, 0x00	; 0
+ 3ee:	0e 94 2b 01 	call	0x256	; 0x256 <SD_Read_Single>
+	PORTC = 0x01;
+ 3f2:	c8 b9       	out	0x08, r28	; 8
+    while (1) 
+    {
+		Check_SPI_Ouput();		
+ 3f4:	0e 94 dc 01 	call	0x3b8	; 0x3b8 <Check_SPI_Ouput>
+    }
+ 3f8:	fd cf       	rjmp	.-6      	; 0x3f4 <main+0x2e>
+
+000003fa <_exit>:
+ 3fa:	f8 94       	cli
+
+000003fc <__stop_program>:
+ 3fc:	ff cf       	rjmp	.-2      	; 0x3fc <__stop_program>

@@ -1,0 +1,421 @@
+
+I2CTest2.elf:     file format elf32-avr
+
+Sections:
+Idx Name          Size      VMA       LMA       File off  Algn
+  0 .data         00000000  00800100  00800100  00000274  2**0
+                  CONTENTS, ALLOC, LOAD, DATA
+  1 .text         00000200  00000000  00000000  00000074  2**1
+                  CONTENTS, ALLOC, LOAD, READONLY, CODE
+  2 .bss          00000002  00800100  00800100  00000274  2**0
+                  ALLOC
+  3 .comment      00000030  00000000  00000000  00000274  2**0
+                  CONTENTS, READONLY
+  4 .note.gnu.avr.deviceinfo 00000040  00000000  00000000  000002a4  2**2
+                  CONTENTS, READONLY
+  5 .debug_aranges 00000058  00000000  00000000  000002e4  2**0
+                  CONTENTS, READONLY, DEBUGGING
+  6 .debug_info   000009f3  00000000  00000000  0000033c  2**0
+                  CONTENTS, READONLY, DEBUGGING
+  7 .debug_abbrev 00000765  00000000  00000000  00000d2f  2**0
+                  CONTENTS, READONLY, DEBUGGING
+  8 .debug_line   0000040a  00000000  00000000  00001494  2**0
+                  CONTENTS, READONLY, DEBUGGING
+  9 .debug_frame  00000094  00000000  00000000  000018a0  2**2
+                  CONTENTS, READONLY, DEBUGGING
+ 10 .debug_str    0000041c  00000000  00000000  00001934  2**0
+                  CONTENTS, READONLY, DEBUGGING
+ 11 .debug_loc    00000092  00000000  00000000  00001d50  2**0
+                  CONTENTS, READONLY, DEBUGGING
+ 12 .debug_ranges 00000048  00000000  00000000  00001de2  2**0
+                  CONTENTS, READONLY, DEBUGGING
+
+Disassembly of section .text:
+
+00000000 <__vectors>:
+   0:	0c 94 34 00 	jmp	0x68	; 0x68 <__ctors_end>
+   4:	0c 94 51 00 	jmp	0xa2	; 0xa2 <__bad_interrupt>
+   8:	0c 94 51 00 	jmp	0xa2	; 0xa2 <__bad_interrupt>
+   c:	0c 94 51 00 	jmp	0xa2	; 0xa2 <__bad_interrupt>
+  10:	0c 94 51 00 	jmp	0xa2	; 0xa2 <__bad_interrupt>
+  14:	0c 94 51 00 	jmp	0xa2	; 0xa2 <__bad_interrupt>
+  18:	0c 94 51 00 	jmp	0xa2	; 0xa2 <__bad_interrupt>
+  1c:	0c 94 51 00 	jmp	0xa2	; 0xa2 <__bad_interrupt>
+  20:	0c 94 51 00 	jmp	0xa2	; 0xa2 <__bad_interrupt>
+  24:	0c 94 51 00 	jmp	0xa2	; 0xa2 <__bad_interrupt>
+  28:	0c 94 51 00 	jmp	0xa2	; 0xa2 <__bad_interrupt>
+  2c:	0c 94 51 00 	jmp	0xa2	; 0xa2 <__bad_interrupt>
+  30:	0c 94 51 00 	jmp	0xa2	; 0xa2 <__bad_interrupt>
+  34:	0c 94 51 00 	jmp	0xa2	; 0xa2 <__bad_interrupt>
+  38:	0c 94 51 00 	jmp	0xa2	; 0xa2 <__bad_interrupt>
+  3c:	0c 94 51 00 	jmp	0xa2	; 0xa2 <__bad_interrupt>
+  40:	0c 94 51 00 	jmp	0xa2	; 0xa2 <__bad_interrupt>
+  44:	0c 94 51 00 	jmp	0xa2	; 0xa2 <__bad_interrupt>
+  48:	0c 94 51 00 	jmp	0xa2	; 0xa2 <__bad_interrupt>
+  4c:	0c 94 51 00 	jmp	0xa2	; 0xa2 <__bad_interrupt>
+  50:	0c 94 51 00 	jmp	0xa2	; 0xa2 <__bad_interrupt>
+  54:	0c 94 51 00 	jmp	0xa2	; 0xa2 <__bad_interrupt>
+  58:	0c 94 51 00 	jmp	0xa2	; 0xa2 <__bad_interrupt>
+  5c:	0c 94 51 00 	jmp	0xa2	; 0xa2 <__bad_interrupt>
+  60:	0c 94 51 00 	jmp	0xa2	; 0xa2 <__bad_interrupt>
+  64:	0c 94 51 00 	jmp	0xa2	; 0xa2 <__bad_interrupt>
+
+00000068 <__ctors_end>:
+  68:	11 24       	eor	r1, r1
+  6a:	1f be       	out	0x3f, r1	; 63
+  6c:	cf ef       	ldi	r28, 0xFF	; 255
+  6e:	d8 e0       	ldi	r29, 0x08	; 8
+  70:	de bf       	out	0x3e, r29	; 62
+  72:	cd bf       	out	0x3d, r28	; 61
+
+00000074 <__do_copy_data>:
+  74:	11 e0       	ldi	r17, 0x01	; 1
+  76:	a0 e0       	ldi	r26, 0x00	; 0
+  78:	b1 e0       	ldi	r27, 0x01	; 1
+  7a:	e0 e0       	ldi	r30, 0x00	; 0
+  7c:	f2 e0       	ldi	r31, 0x02	; 2
+  7e:	02 c0       	rjmp	.+4      	; 0x84 <__do_copy_data+0x10>
+  80:	05 90       	lpm	r0, Z+
+  82:	0d 92       	st	X+, r0
+  84:	a0 30       	cpi	r26, 0x00	; 0
+  86:	b1 07       	cpc	r27, r17
+  88:	d9 f7       	brne	.-10     	; 0x80 <__do_copy_data+0xc>
+
+0000008a <__do_clear_bss>:
+  8a:	21 e0       	ldi	r18, 0x01	; 1
+  8c:	a0 e0       	ldi	r26, 0x00	; 0
+  8e:	b1 e0       	ldi	r27, 0x01	; 1
+  90:	01 c0       	rjmp	.+2      	; 0x94 <.do_clear_bss_start>
+
+00000092 <.do_clear_bss_loop>:
+  92:	1d 92       	st	X+, r1
+
+00000094 <.do_clear_bss_start>:
+  94:	a2 30       	cpi	r26, 0x02	; 2
+  96:	b2 07       	cpc	r27, r18
+  98:	e1 f7       	brne	.-8      	; 0x92 <.do_clear_bss_loop>
+  9a:	0e 94 a8 00 	call	0x150	; 0x150 <main>
+  9e:	0c 94 fe 00 	jmp	0x1fc	; 0x1fc <_exit>
+
+000000a2 <__bad_interrupt>:
+  a2:	0c 94 00 00 	jmp	0	; 0x0 <__vectors>
+
+000000a6 <Error_I2C_TWI>:
+void I2CClearFlag_Enable_ACK()
+{
+	TWCR = (1<<TWINT) | (1<<TWEN) | (1<<TWEA);//clear the flag and enable
+}
+
+void Error_I2C_TWI(){
+  a6:	24 e6       	ldi	r18, 0x64	; 100
+  a8:	30 e0       	ldi	r19, 0x00	; 0
+	for(int i = 0;i<100;i++){
+		PORTD ^= (1<<PIND2);
+  aa:	94 e0       	ldi	r25, 0x04	; 4
+  ac:	8b b1       	in	r24, 0x0b	; 11
+  ae:	89 27       	eor	r24, r25
+  b0:	8b b9       	out	0x0b, r24	; 11
+	#else
+		//round up by default
+		__ticks_dc = (uint32_t)(ceil(fabs(__tmp)));
+	#endif
+
+	__builtin_avr_delay_cycles(__ticks_dc);
+  b2:	4f ef       	ldi	r20, 0xFF	; 255
+  b4:	59 ef       	ldi	r21, 0xF9	; 249
+  b6:	80 e0       	ldi	r24, 0x00	; 0
+  b8:	41 50       	subi	r20, 0x01	; 1
+  ba:	50 40       	sbci	r21, 0x00	; 0
+  bc:	80 40       	sbci	r24, 0x00	; 0
+  be:	e1 f7       	brne	.-8      	; 0xb8 <Error_I2C_TWI+0x12>
+  c0:	00 c0       	rjmp	.+0      	; 0xc2 <Error_I2C_TWI+0x1c>
+  c2:	00 00       	nop
+  c4:	21 50       	subi	r18, 0x01	; 1
+  c6:	31 09       	sbc	r19, r1
+{
+	TWCR = (1<<TWINT) | (1<<TWEN) | (1<<TWEA);//clear the flag and enable
+}
+
+void Error_I2C_TWI(){
+	for(int i = 0;i<100;i++){
+  c8:	89 f7       	brne	.-30     	; 0xac <Error_I2C_TWI+0x6>
+  ca:	9f ef       	ldi	r25, 0xFF	; 255
+  cc:	29 e6       	ldi	r18, 0x69	; 105
+  ce:	48 e1       	ldi	r20, 0x18	; 24
+  d0:	91 50       	subi	r25, 0x01	; 1
+  d2:	20 40       	sbci	r18, 0x00	; 0
+  d4:	40 40       	sbci	r20, 0x00	; 0
+  d6:	e1 f7       	brne	.-8      	; 0xd0 <Error_I2C_TWI+0x2a>
+  d8:	00 c0       	rjmp	.+0      	; 0xda <Error_I2C_TWI+0x34>
+  da:	00 00       	nop
+  dc:	08 95       	ret
+
+000000de <Pass_I2C_TWI>:
+	}
+	_delay_ms(500);
+}
+
+void Pass_I2C_TWI(){
+	PORTD |= (1<<PIND2);
+  de:	5a 9a       	sbi	0x0b, 2	; 11
+  e0:	2f ef       	ldi	r18, 0xFF	; 255
+  e2:	89 e6       	ldi	r24, 0x69	; 105
+  e4:	98 e1       	ldi	r25, 0x18	; 24
+  e6:	21 50       	subi	r18, 0x01	; 1
+  e8:	80 40       	sbci	r24, 0x00	; 0
+  ea:	90 40       	sbci	r25, 0x00	; 0
+  ec:	e1 f7       	brne	.-8      	; 0xe6 <Pass_I2C_TWI+0x8>
+  ee:	00 c0       	rjmp	.+0      	; 0xf0 <Pass_I2C_TWI+0x12>
+  f0:	00 00       	nop
+	_delay_ms(500);
+	PORTD &= ~(1<<PIND2);
+  f2:	5a 98       	cbi	0x0b, 2	; 11
+  f4:	2f ef       	ldi	r18, 0xFF	; 255
+  f6:	89 e6       	ldi	r24, 0x69	; 105
+  f8:	98 e1       	ldi	r25, 0x18	; 24
+  fa:	21 50       	subi	r18, 0x01	; 1
+  fc:	80 40       	sbci	r24, 0x00	; 0
+  fe:	90 40       	sbci	r25, 0x00	; 0
+ 100:	e1 f7       	brne	.-8      	; 0xfa <Pass_I2C_TWI+0x1c>
+ 102:	00 c0       	rjmp	.+0      	; 0x104 <Pass_I2C_TWI+0x26>
+ 104:	00 00       	nop
+ 106:	08 95       	ret
+
+00000108 <I2CFlagWait>:
+	_delay_ms(500);
+}
+
+void I2CFlagWait()
+{
+	while(!(TWCR & (1<<TWINT)))
+ 108:	ec eb       	ldi	r30, 0xBC	; 188
+ 10a:	f0 e0       	ldi	r31, 0x00	; 0
+ 10c:	80 81       	ld	r24, Z
+ 10e:	88 23       	and	r24, r24
+ 110:	ec f7       	brge	.-6      	; 0x10c <I2CFlagWait+0x4>
+	//while((TWCR & (1<<TWINT)))
+	;
+}
+ 112:	08 95       	ret
+
+00000114 <I2CCheckStatus>:
+
+void I2CCheckStatus(uint8_t status)
+{
+	check_cnt++;
+ 114:	20 91 00 01 	lds	r18, 0x0100	; 0x800100 <__data_end>
+ 118:	30 91 01 01 	lds	r19, 0x0101	; 0x800101 <__data_end+0x1>
+ 11c:	2f 5f       	subi	r18, 0xFF	; 255
+ 11e:	3f 4f       	sbci	r19, 0xFF	; 255
+ 120:	30 93 01 01 	sts	0x0101, r19	; 0x800101 <__data_end+0x1>
+ 124:	20 93 00 01 	sts	0x0100, r18	; 0x800100 <__data_end>
+	if((TWSR & 0xF8) != status){
+ 128:	20 91 b9 00 	lds	r18, 0x00B9	; 0x8000b9 <__TEXT_REGION_LENGTH__+0x7e00b9>
+ 12c:	28 7f       	andi	r18, 0xF8	; 248
+ 12e:	30 e0       	ldi	r19, 0x00	; 0
+ 130:	90 e0       	ldi	r25, 0x00	; 0
+ 132:	28 17       	cp	r18, r24
+ 134:	39 07       	cpc	r19, r25
+ 136:	19 f0       	breq	.+6      	; 0x13e <I2CCheckStatus+0x2a>
+		Error_I2C_TWI();
+ 138:	0e 94 53 00 	call	0xa6	; 0xa6 <Error_I2C_TWI>
+ 13c:	08 95       	ret
+	}else{
+		Pass_I2C_TWI();
+ 13e:	0e 94 6f 00 	call	0xde	; 0xde <Pass_I2C_TWI>
+ 142:	08 95       	ret
+
+00000144 <I2C_Start>:
+	}
+}
+
+void I2C_Start()
+{
+	TWCR |= (1<<TWEN) | (1<<TWINT) | (1<<TWSTA);//TWIE not sure
+ 144:	ec eb       	ldi	r30, 0xBC	; 188
+ 146:	f0 e0       	ldi	r31, 0x00	; 0
+ 148:	80 81       	ld	r24, Z
+ 14a:	84 6a       	ori	r24, 0xA4	; 164
+ 14c:	80 83       	st	Z, r24
+ 14e:	08 95       	ret
+
+00000150 <main>:
+
+int main(void)
+{
+    uint8_t voltage_low = 0x00;
+	
+	DDRD |= 0b00000100;
+ 150:	52 9a       	sbi	0x0a, 2	; 10
+// 	PORTD |= 0b00000100;
+	//initialization
+	PRR &= ~(1<<PRTWI);
+ 152:	e4 e6       	ldi	r30, 0x64	; 100
+ 154:	f0 e0       	ldi	r31, 0x00	; 0
+ 156:	80 81       	ld	r24, Z
+ 158:	8f 77       	andi	r24, 0x7F	; 127
+ 15a:	80 83       	st	Z, r24
+	TWCR &= ~(1<<TWIE);
+ 15c:	cc eb       	ldi	r28, 0xBC	; 188
+ 15e:	d0 e0       	ldi	r29, 0x00	; 0
+ 160:	88 81       	ld	r24, Y
+ 162:	8e 7f       	andi	r24, 0xFE	; 254
+ 164:	88 83       	st	Y, r24
+	//TWCR |= (1<<TWIE);
+	TWBR = 0x3C;
+ 166:	8c e3       	ldi	r24, 0x3C	; 60
+ 168:	80 93 b8 00 	sts	0x00B8, r24	; 0x8000b8 <__TEXT_REGION_LENGTH__+0x7e00b8>
+	TWSR |= (1<<TWPS0);//actual SCL is 32258Hz
+ 16c:	e9 eb       	ldi	r30, 0xB9	; 185
+ 16e:	f0 e0       	ldi	r31, 0x00	; 0
+ 170:	80 81       	ld	r24, Z
+ 172:	81 60       	ori	r24, 0x01	; 1
+ 174:	80 83       	st	Z, r24
+	
+	//Start Condition
+	I2C_Start();
+ 176:	0e 94 a2 00 	call	0x144	; 0x144 <I2C_Start>
+	//sei();
+	I2CFlagWait();//Wait for the flag to be set
+ 17a:	0e 94 84 00 	call	0x108	; 0x108 <I2CFlagWait>
+	I2CCheckStatus(0x08);
+ 17e:	88 e0       	ldi	r24, 0x08	; 8
+ 180:	0e 94 8a 00 	call	0x114	; 0x114 <I2CCheckStatus>
+ 184:	2f ef       	ldi	r18, 0xFF	; 255
+ 186:	89 e6       	ldi	r24, 0x69	; 105
+ 188:	98 e1       	ldi	r25, 0x18	; 24
+ 18a:	21 50       	subi	r18, 0x01	; 1
+ 18c:	80 40       	sbci	r24, 0x00	; 0
+ 18e:	90 40       	sbci	r25, 0x00	; 0
+ 190:	e1 f7       	brne	.-8      	; 0x18a <main+0x3a>
+ 192:	00 c0       	rjmp	.+0      	; 0x194 <main+0x44>
+ 194:	00 00       	nop
+	 
+	 _delay_ms(500);
+	 
+	//Send slave address and W
+	TWDR = 0xE0;
+ 196:	0b eb       	ldi	r16, 0xBB	; 187
+ 198:	10 e0       	ldi	r17, 0x00	; 0
+ 19a:	80 ee       	ldi	r24, 0xE0	; 224
+ 19c:	f8 01       	movw	r30, r16
+ 19e:	80 83       	st	Z, r24
+int check_cnt = 0;
+uint8_t dev_add = 0xE0;
+
+void I2CClearFlag_Enable()
+{
+	TWCR = (1<<TWINT) | (1<<TWEN);//clear the flag and enable
+ 1a0:	0f 2e       	mov	r0, r31
+ 1a2:	f4 e8       	ldi	r31, 0x84	; 132
+ 1a4:	ff 2e       	mov	r15, r31
+ 1a6:	f0 2d       	mov	r31, r0
+ 1a8:	f8 82       	st	Y, r15
+	 _delay_ms(500);
+	 
+	//Send slave address and W
+	TWDR = 0xE0;
+	I2CClearFlag_Enable();
+	I2CFlagWait();
+ 1aa:	0e 94 84 00 	call	0x108	; 0x108 <I2CFlagWait>
+	I2CCheckStatus(0x18); //check status for SLA+W trans & ack recev
+ 1ae:	88 e1       	ldi	r24, 0x18	; 24
+ 1b0:	0e 94 8a 00 	call	0x114	; 0x114 <I2CCheckStatus>
+
+	//Write Register Addr
+	TWDR = 0x18;//REG_VOLTAGE_LOW check 8.2 in datasheet
+ 1b4:	88 e1       	ldi	r24, 0x18	; 24
+ 1b6:	f8 01       	movw	r30, r16
+ 1b8:	80 83       	st	Z, r24
+int check_cnt = 0;
+uint8_t dev_add = 0xE0;
+
+void I2CClearFlag_Enable()
+{
+	TWCR = (1<<TWINT) | (1<<TWEN);//clear the flag and enable
+ 1ba:	f8 82       	st	Y, r15
+	I2CCheckStatus(0x18); //check status for SLA+W trans & ack recev
+
+	//Write Register Addr
+	TWDR = 0x18;//REG_VOLTAGE_LOW check 8.2 in datasheet
+	I2CClearFlag_Enable();
+	I2CFlagWait();
+ 1bc:	0e 94 84 00 	call	0x108	; 0x108 <I2CFlagWait>
+	I2CCheckStatus(0x28);
+ 1c0:	88 e2       	ldi	r24, 0x28	; 40
+ 1c2:	0e 94 8a 00 	call	0x114	; 0x114 <I2CCheckStatus>
+	
+	//repeat start
+	I2C_Start();
+ 1c6:	0e 94 a2 00 	call	0x144	; 0x144 <I2C_Start>
+	I2CFlagWait();
+ 1ca:	0e 94 84 00 	call	0x108	; 0x108 <I2CFlagWait>
+	I2CCheckStatus(0x10); //check status for SLA+W trans & ack recev
+ 1ce:	80 e1       	ldi	r24, 0x10	; 16
+ 1d0:	0e 94 8a 00 	call	0x114	; 0x114 <I2CCheckStatus>
+	
+	//send device (slave) address and R
+	TWDR = 0xE1;
+ 1d4:	81 ee       	ldi	r24, 0xE1	; 225
+ 1d6:	f8 01       	movw	r30, r16
+ 1d8:	80 83       	st	Z, r24
+int check_cnt = 0;
+uint8_t dev_add = 0xE0;
+
+void I2CClearFlag_Enable()
+{
+	TWCR = (1<<TWINT) | (1<<TWEN);//clear the flag and enable
+ 1da:	f8 82       	st	Y, r15
+	I2CCheckStatus(0x10); //check status for SLA+W trans & ack recev
+	
+	//send device (slave) address and R
+	TWDR = 0xE1;
+	I2CClearFlag_Enable();
+	I2CFlagWait();
+ 1dc:	0e 94 84 00 	call	0x108	; 0x108 <I2CFlagWait>
+	I2CCheckStatus(0x40); //check status for SLA+W trans & ack recev
+ 1e0:	80 e4       	ldi	r24, 0x40	; 64
+ 1e2:	0e 94 8a 00 	call	0x114	; 0x114 <I2CCheckStatus>
+int check_cnt = 0;
+uint8_t dev_add = 0xE0;
+
+void I2CClearFlag_Enable()
+{
+	TWCR = (1<<TWINT) | (1<<TWEN);//clear the flag and enable
+ 1e6:	f8 82       	st	Y, r15
+	I2CFlagWait();
+	I2CCheckStatus(0x40); //check status for SLA+W trans & ack recev
+	
+	//read data (byte1)
+	I2CClearFlag_Enable();
+	I2CFlagWait();
+ 1e8:	0e 94 84 00 	call	0x108	; 0x108 <I2CFlagWait>
+	I2CCheckStatus(0x58);//check data recev and NACK sent
+ 1ec:	88 e5       	ldi	r24, 0x58	; 88
+ 1ee:	0e 94 8a 00 	call	0x114	; 0x114 <I2CCheckStatus>
+	
+	//retrive
+	voltage_low = TWDR;
+ 1f2:	f8 01       	movw	r30, r16
+ 1f4:	80 81       	ld	r24, Z
+// 	I2CClearFlag_Enable();
+// 	I2CFlagWait();
+// 	I2CCheckStatus(0x58);//check data recev and NACK sent
+	
+	//stop condition
+	TWCR = (1<<TWINT) | (1<<TWEN) | (1<<TWSTO);
+ 1f6:	84 e9       	ldi	r24, 0x94	; 148
+ 1f8:	88 83       	st	Y, r24
+// 	volatile uint16_t voltage = 0;
+// 	voltage = (voltage_high<<8) + voltage_low;
+	 
+    while (1) 
+    {
+    }
+ 1fa:	ff cf       	rjmp	.-2      	; 0x1fa <main+0xaa>
+
+000001fc <_exit>:
+ 1fc:	f8 94       	cli
+
+000001fe <__stop_program>:
+ 1fe:	ff cf       	rjmp	.-2      	; 0x1fe <__stop_program>
