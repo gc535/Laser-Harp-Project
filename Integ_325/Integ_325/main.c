@@ -2,7 +2,7 @@
  * LCD_325.c
  *
  * Created: 4/19/2017 8:03:53 AM
- * Author : pcadmin
+ * Author : Guangwei
  */ 
 
 #define F_CPU 8000000
